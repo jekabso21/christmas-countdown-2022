@@ -699,4 +699,13 @@ var snowStorm = (function(window, document) {
   
   }(window, document));
 
+//keep rendering the animation when user has tabbed out of the browser
+window.addEventListener('blur', function() {
+    snowStorm.freeze();
+});
+window.addEventListener('focus', function() {
+    snowStorm.resume();
+
+});
+
   
