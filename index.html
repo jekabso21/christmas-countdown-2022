@@ -30,5 +30,12 @@
                 <span>seconds</span>
             </div>
         </div>
+        <!--        kepp playing the video if the user has tabbed out of the window-->
+        <script>
+            var audio = document.getElementById("audio");
+            audio.volume = 0.1;
+            audio.play();
+        </script>
+
     </body>
 </html>
