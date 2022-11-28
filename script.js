@@ -65,9 +65,10 @@ var snowStorm = (function(window, document) {
     this.targetElement = null;      // element which snow will be appended to (null = document.body) - can be an element ID eg. 'myDiv', or a DOM node reference
     this.useMeltEffect = true;      // When recycling fallen snow (or rarely, when falling), have it "melt" and fade out if browser supports it
     this.useTwinkleEffect = false;  // Allow snow to randomly "flicker" in and out of view while falling
-    this.usePositionFixed = false;  // true = snow does not shift vertically when scrolling. May increase CPU load, disabled by default - if enabled, used only where supported
+    this.usePositionFixed = true;  // true = snow does not shift vertically when scrolling. May increase CPU load, disabled by default - if enabled, used only where supported
     this.usePixelPosition = false;  // Whether to use pixel values for snow top/left vs. percentages. Auto-enabled if body is position:relative or targetElement is specified.
-  
+    //Keep snowing effect when window is not active
+    this.freezeOnBlur = true; // Only snow when the window is in focus (foreground.) Saves CPU.
     // --- less-used bits ---
   
     this.freezeOnBlur = true;       // Only snow when the window is in focus (foreground.) Saves CPU.
@@ -699,13 +700,5 @@ var snowStorm = (function(window, document) {
   
   }(window, document));
 
-//keep rendering the animation when user has tabbed out of the browser
-window.addEventListener('blur', function() {
-    snowStorm.freeze();
-});
-window.addEventListener('focus', function() {
-    snowStorm.resume();
-
-});
 
   
